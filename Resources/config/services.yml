@@ -1,0 +1,6 @@
+services:
+    cooperspeele.mailer.twig:
+        class: CoopersPeele\Bundle\TwigMailerBundle\Mailer\TwigSwiftMailer
+        arguments:
+            - "@mailer"
+            - "@twig"

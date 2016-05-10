@@ -1,0 +1,22 @@
+{
+	"name": "cooperspeele/twig-mailer-bundle",
+	"license": "MIT",
+	"type": "symfony-bundle",
+	"description": "Twig- and SwiftMailer-based mailer implementation",
+	"homepage": "https://github.com/cooperspeele/twig-mailer-bundle",
+	"require": {
+		"php": ">=5.4",
+		"symfony/framework-bundle": "~2.8",
+		"symfony/twig-bundle": "~2.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"CoopersPeele\\Bundle\\TwigMailerBundle\\": ""
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "0.2.x-dev"
+		}
+	}
+}
