@@ -6,7 +6,7 @@ use Swift_Mailer;
 use Swift_Message;
 use Twig_Environment;
 
-class TwigSwiftMailer
+class TwigSwiftMailer implements TwigSwiftMailerInterface
 {
     protected $mailer;
 
