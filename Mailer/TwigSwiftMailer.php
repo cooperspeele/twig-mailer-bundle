@@ -27,9 +27,9 @@ class TwigSwiftMailer implements TwigSwiftMailerInterface
      * @param string $fromEmail
      * @param string $toEmail
      */
-    public function sendMessage($toEmail, $fromEmail, $templateName, array $context = array())
+    public function sendMessage($toEmail, $fromEmail, $template_name, array $context = array())
     {
-        $message = $this->prepareMessage($toEmail, $fromEmail, $templateName, $context);
+        $message = $this->prepareMessage($toEmail, $fromEmail, $template_name, $context);
 
         return $this->getMailer()->send($message);
     }
@@ -40,26 +40,26 @@ class TwigSwiftMailer implements TwigSwiftMailerInterface
      * @param string $fromEmail
      * @param string $toEmail
      */
-    protected function prepareMessage($toEmail, $fromEmail, $templateName, array $context = array())
+    protected function prepareMessage($toEmail, $fromEmail, $template_name, array $context = array())
     {
         $twig = $this->getTwig();
 
         $context = $twig->mergeGlobals($context);
-        $template = $twig->loadTemplate($templateName);
+        $template = $twig->loadTemplate($template_name);
         $subject = $template->renderBlock('subject', $context);
-        $textBody = $template->renderBlock('body_text', $context);
-        $htmlBody = $template->renderBlock('body_html', $context);
+        $body_text = $template->renderBlock('body_text', $context);
+        $body_html = $template->renderBlock('body_html', $context);
 
         $message = Swift_Message::newInstance()
             ->setSubject($subject)
             ->setFrom($fromEmail)
             ->setTo($toEmail);
 
-        if (!empty($htmlBody)) {
-            $message->setBody($htmlBody, 'text/html')
-                ->addPart($textBody, 'text/plain');
+        if (!empty($body_html)) {
+            $message->setBody($body_html, 'text/html')
+                ->addPart($body_text, 'text/plain');
         } else {
-            $message->setBody($textBody);
+            $message->setBody($body_text);
         }
 
         return $message;
